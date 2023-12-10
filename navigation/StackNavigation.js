@@ -7,7 +7,7 @@ import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SetupShop from '../screens/SetupShop';
-import { Feather, MaterialIcons } from '@expo/vector-icons';
+import { Feather, MaterialIcons, Octicons } from '@expo/vector-icons';
 
 const StackNavigation = () => {
     const Tab = createBottomTabNavigator();
@@ -50,12 +50,31 @@ const StackNavigation = () => {
                         ),
                     }}
                 />
+                <Tab.Screen
+                    name='Trends'
+                    component={HomeScreen}
+                    options={{
+                        tabBarLabel: "Trends", // Set the label using tabBarLabel
+                        tabBarLabelStyle: ({ focused }) => ({
+                            color: focused ? '#111111' : '#AAAAAA',
+                            fontWeight: focused ? 'bold' : 'normal',
+                        }),
+                        headerShown: false,
+                        tabBarIcon: ({ focused }) => (
+                            <Octicons
+                                name='graph'
+                                size={24}
+                                color={focused ? '#111111' : '#AAAAAA'}
+                            />
+                        ),
+                    }}
+                />
 
                 <Tab.Screen
                     name='Market'
                     component={HomeScreen}
                     options={{
-                        tabBarLabel: "Market", // Set the label using tabBarLabel
+                        tabBarLabel: "Messages", // Set the label using tabBarLabel
                         tabBarLabelStyle: ({ focused }) => ({
                             color: focused ? '#111111' : '#AAAAAA',
                             fontWeight: focused ? 'bold' : 'normal',
@@ -74,7 +93,7 @@ const StackNavigation = () => {
                     name='Profile'
                     component={HomeScreen}
                     options={{
-                        tabBarLabel: "Shop", // Set the label using tabBarLabel
+                        tabBarLabel: "Profile", // Set the label using tabBarLabel
                         tabBarLabelStyle: ({ focused }) => ({
                             color: focused ? '#111111' : '#AAAAAA',
                             fontWeight: focused ? 'bold' : 'normal',
@@ -97,10 +116,10 @@ const StackNavigation = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name='SetupShop' component={SetupShop} options={{ headerShown: false }} />
                 <Stack.Screen name='Main' component={BottomTabs} options={{ headerShown: false }} />
                 <Stack.Screen name='Signup' component={SignupScreen} options={{ headerShown: false }} />
                 <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
+                <Stack.Screen name='SetupShop' component={SetupShop} options={{ headerShown: false }} />
                 <Stack.Screen name='Home' component={HomeScreen} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
