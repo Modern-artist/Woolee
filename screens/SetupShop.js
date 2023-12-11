@@ -10,7 +10,7 @@ const SetupShop = () => {
             <View>
                 <LottieView style={{ width: 300, height: 300 }} source={require('../SetupShopAnimation.json')} autoPlay loop />
             </View>
-            <View style={{
+            <Pressable style={{
                 marginVertical: 40,
                 display: 'flex',
                 backgroundColor: '#111111',
@@ -28,7 +28,7 @@ const SetupShop = () => {
                     fontWeight: '600',
                 }} >Create a Woolee Shop</Text>
                 <Feather name="arrow-right-circle" size={24} color="white" />
-            </View>
+            </Pressable>
             
             
         </SafeAreaView>

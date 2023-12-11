@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Pressable } from 'react-native'
 import React from 'react'
-import logo from '../assets/logo.png';
 import certifiedLogo from '../assets/g8.png';
 import { Ionicons, MaterialIcons, Feather, FontAwesome } from '@expo/vector-icons';
 import { SliderBox } from "react-native-image-slider-box";
 import JobCard from '../components/JobCard';
+import NavBar from '../components/NavBar';
 
 
 const HomeScreen = () => {
@@ -16,7 +16,8 @@ const HomeScreen = () => {
     ];
     return (
         <SafeAreaView>
-            <View style={styles.navBar}>
+            <NavBar/>
+            {/* <View style={styles.navBar}>
                 <Image source={logo} style={styles.logo} />
                 <View style={styles.navBarBtns}>
                     <Pressable>
@@ -29,10 +30,12 @@ const HomeScreen = () => {
                         <MaterialIcons name="favorite-outline" size={28} color="black" />
                     </Pressable>
                 </View>
-            </View>
+            </View> */}
             
             <ScrollView>
-                <View style={{ paddingVertical: 20 }}><SliderBox images={bannerImg} autoPlay circleLoop dotColor={"#141414"} inactiveDotColor={"#AAAAAA"} ImageComponentStyle={{ width: "90%", borderRadius:12 }}></SliderBox></View>
+                <View style={{ paddingVertical: 20 }}>
+                    <SliderBox images={bannerImg} autoPlay circleLoop dotColor={"#141414"} inactiveDotColor={"#AAAAAA"} ImageComponentStyle={{ width: "90%", borderRadius:12 }}></SliderBox>
+                    </View>
 
                 <View style={styles.catContainer}>
                     <Pressable>
@@ -77,27 +80,27 @@ const HomeScreen = () => {
 export default HomeScreen
 
 const styles = StyleSheet.create({
-    logo: {
-        width: 40,
-        height: 40,
-        // marginBottom: 20,
-    },
-    navBar: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        padding: 20,
-        borderBottomWidth: 1,
-        borderBlockColor: '#d0d0d0'
-        // backgroundColor:'red'
-    },
-    navBarBtns: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: 20,
-        flexDirection: 'row',
-    },
+    // logo: {
+    //     width: 40,
+    //     height: 40,
+    //     // marginBottom: 20,
+    // },
+    // navBar: {
+    //     display: 'flex',
+    //     alignItems: 'center',
+    //     justifyContent: 'space-between',
+    //     flexDirection: 'row',
+    //     padding: 20,
+    //     borderBottomWidth: 1,
+    //     borderBlockColor: '#d0d0d0'
+    //     // backgroundColor:'red'
+    // },
+    // navBarBtns: {
+    //     display: 'flex',
+    //     alignItems: 'center',
+    //     gap: 20,
+    //     flexDirection: 'row',
+    // },
 
     catContainer: {
         display: 'flex',

@@ -7,7 +7,9 @@ import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SetupShop from '../screens/SetupShop';
+import Shop from '../screens/Shop';
 import { Feather, MaterialIcons, Octicons } from '@expo/vector-icons';
+import NewsTrends from '../screens/NewsTrends';
 
 const StackNavigation = () => {
     const Tab = createBottomTabNavigator();
@@ -33,7 +35,7 @@ const StackNavigation = () => {
                 />
                 <Tab.Screen
                     name='Shop'
-                    component={HomeScreen}
+                    component={Shop}
                     options={{
                         tabBarLabel: "Shop", // Set the label using tabBarLabel
                         tabBarLabelStyle: ({ focused }) => ({
@@ -52,7 +54,7 @@ const StackNavigation = () => {
                 />
                 <Tab.Screen
                     name='Trends'
-                    component={HomeScreen}
+                    component={NewsTrends}
                     options={{
                         tabBarLabel: "Trends", // Set the label using tabBarLabel
                         tabBarLabelStyle: ({ focused }) => ({
@@ -71,7 +73,7 @@ const StackNavigation = () => {
                 />
 
                 <Tab.Screen
-                    name='Market'
+                    name='Messages'
                     component={HomeScreen}
                     options={{
                         tabBarLabel: "Messages", // Set the label using tabBarLabel
@@ -119,8 +121,10 @@ const StackNavigation = () => {
                 <Stack.Screen name='Main' component={BottomTabs} options={{ headerShown: false }} />
                 <Stack.Screen name='Signup' component={SignupScreen} options={{ headerShown: false }} />
                 <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
+                <Stack.Screen name='Shop' component={Shop} options={{ headerShown: false }} />
                 <Stack.Screen name='SetupShop' component={SetupShop} options={{ headerShown: false }} />
                 <Stack.Screen name='Home' component={HomeScreen} options={{ headerShown: false }} />
+                <Stack.Screen name='NewsTrends' component={NewsTrends} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
