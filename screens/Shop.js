@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import ForSale from '../screens/ForSale';
 import Sold from '../screens/Sold';
+import Inventory from '../screens/Inventory';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -14,6 +15,7 @@ function MyTabs() {
             style: { backgroundColor: 'transparent' }, // Change the background color of the tab bar
             // indicatorStyle: { backgroundColor: '#000' },
         }}>
+            <Tab.Screen name="Inventory" component={Inventory} />
             <Tab.Screen name="For Sale" component={ForSale} />
             <Tab.Screen name="Sold" component={Sold} />
         </Tab.Navigator>

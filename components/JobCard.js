@@ -80,7 +80,9 @@ const styles = StyleSheet.create({
     Detail: {
         // backgroundColor: 'red',
         display: 'flex',
+        flexWrap:'wrap',
         gap: 40,
+        rowGap:12,
         flexDirection: 'row',
         // paddingVertical: 12,
         alignItems: 'center',

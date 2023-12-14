@@ -1,7 +1,19 @@
 import { StyleSheet, Text, View, Pressable, Image } from 'react-native'
 import React from 'react'
 import { AntDesign, FontAwesome5, Entypo } from '@expo/vector-icons';
+// import { createStackNavigator } from '@react-navigation/stack';
 const NewsCard = () => {
+
+    // const Stack = createStackNavigator();
+
+    // function MyStack() {
+    //     return (
+    //         <Stack.Navigator>
+    //             <Stack.Screen name="Home" component={Home} />
+    //             <Stack.Screen name="Home" component={Home} />
+    //         </Stack.Navigator>
+    //     );
+    // }
 
     const handlePress1 = () => {
         console.log('Pressable 1 pressed!');
@@ -15,7 +27,6 @@ const NewsCard = () => {
 
     return (
         <Pressable style={styles.newsCard}
-        
             onPress={handlePress1}>
             <View style={styles.authDetail}>
                 <View style={styles.authDes}>
@@ -60,7 +71,7 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         display: 'flex',
         flexDirection: 'column',
-        gap: 20,
+        gap: 16,
         borderBottomColor: '#e7e7e7',
         borderBottomWidth: 2,
     },

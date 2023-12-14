@@ -7,6 +7,7 @@ import TrendsHome from '../screens/Trends/TrendsHome'
 import EduTab from '../screens/Trends/EduTab'
 import Farming from '../screens/Trends/Farming'
 import NavBar from '../components/NavBar';
+import Article from './Trends/Article';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -22,6 +23,7 @@ function MyTabs() {
             }}>
             <Tab.Screen name="Trending" component={TrendsHome} />
             <Tab.Screen name="Educational" component={EduTab} />
+            <Tab.Screen name="Article" component={Article} />
             <Tab.Screen name="For Sale" component={ForSale} />
             <Tab.Screen name="Sold" component={Sold} />
             <Tab.Screen name="Farming" component={Farming} />

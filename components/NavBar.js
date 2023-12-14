@@ -1,28 +1,40 @@
-import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Pressable } from 'react-native'
-import { Ionicons, MaterialIcons, Feather, FontAwesome } from '@expo/vector-icons';
-import React from 'react'
+import { StyleSheet, Image, View, Pressable } from 'react-native';
+import { Ionicons, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'; // Import the hook
+import React from 'react';
 import logo from '../assets/logo.png';
 
 const NavBar = () => {
-  return (
-      <View style={styles.navBar}>
-          <Image source={logo} style={styles.logo} />
-          <View style={styles.navBarBtns}>
-              <Pressable>
-                  <Ionicons name="search" size={28} color="black" />
-              </Pressable>
-              <Pressable>
-                  <Feather name="shopping-bag" size={28} color="black" />
-              </Pressable>
-              <Pressable>
-                  <MaterialIcons name="favorite-outline" size={28} color="black" />
-              </Pressable>
-          </View>
-      </View>
-  )
-}
+    const navigation = useNavigation();
 
-export default NavBar
+    const handleSearchPress = () => {
+        navigation.navigate('Search');
+    };
+    const handleCartPress = () => {
+        navigation.navigate('Cart');
+    };
+
+    return (
+        <View style={styles.navBar}>
+            <Image source={logo} style={styles.logo} />
+            <View style={styles.navBarBtns}>
+                <Pressable onPress={handleSearchPress}>
+                    <Ionicons name="search" size={30} color="black" />
+                </Pressable>
+                <Pressable onPress={handleCartPress}>
+                    <Feather name="shopping-bag" size={28} color="black" />
+                </Pressable>
+                <Pressable>
+                    {/* <FontAwesome5 name="bookmark" size={26} color="black" /> */}
+                    <MaterialCommunityIcons name="bookmark-multiple-outline" size={28} color="black" />
+
+                </Pressable>
+            </View>
+        </View>
+    );
+};
+
+export default NavBar;
 
 const styles = StyleSheet.create({
     logo: {
@@ -31,15 +43,14 @@ const styles = StyleSheet.create({
         // marginBottom: 20,
     },
     navBar: {
-        // backgroundColor:'white',
+        backgroundColor: '#F2F2F2',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         flexDirection: 'row',
         padding: 20,
         borderBottomWidth: 1,
-        borderBlockColor: '#d0d0d0'
-        // backgroundColor:'red'
+        borderBlockColor: '#d0d0d0',
     },
     navBarBtns: {
         display: 'flex',
@@ -47,4 +58,4 @@ const styles = StyleSheet.create({
         gap: 20,
         flexDirection: 'row',
     },
-})
+});

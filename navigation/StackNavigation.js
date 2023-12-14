@@ -8,6 +8,11 @@ import SignupScreen from '../screens/SignupScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SetupShop from '../screens/SetupShop';
 import Shop from '../screens/Shop';
+import Profile from '../screens/Profile';
+import Services from '../screens/Services';
+import Search from '../screens/Search';
+import Cart from '../screens/Cart';
+import Article from '../screens/Trends/Article';
 import { Feather, MaterialIcons, Octicons } from '@expo/vector-icons';
 import NewsTrends from '../screens/NewsTrends';
 
@@ -73,18 +78,18 @@ const StackNavigation = () => {
                 />
 
                 <Tab.Screen
-                    name='Messages'
-                    component={HomeScreen}
+                    name='Services'
+                    component={Services}
                     options={{
-                        tabBarLabel: "Messages", // Set the label using tabBarLabel
+                        tabBarLabel: "Services", // Set the label using tabBarLabel
                         tabBarLabelStyle: ({ focused }) => ({
                             color: focused ? '#111111' : '#AAAAAA',
                             fontWeight: focused ? 'bold' : 'normal',
                         }),
                         headerShown: false,
                         tabBarIcon: ({ focused }) => (
-                            <Feather
-                                name='send'
+                            <MaterialIcons
+                                name='cleaning-services'
                                 size={24}
                                 color={focused ? '#111111' : '#AAAAAA'}
                             />
@@ -93,7 +98,7 @@ const StackNavigation = () => {
                 />
                 <Tab.Screen
                     name='Profile'
-                    component={HomeScreen}
+                    component={Profile}
                     options={{
                         tabBarLabel: "Profile", // Set the label using tabBarLabel
                         tabBarLabelStyle: ({ focused }) => ({
@@ -125,6 +130,9 @@ const StackNavigation = () => {
                 <Stack.Screen name='SetupShop' component={SetupShop} options={{ headerShown: false }} />
                 <Stack.Screen name='Home' component={HomeScreen} options={{ headerShown: false }} />
                 <Stack.Screen name='NewsTrends' component={NewsTrends} options={{ headerShown: false }} />
+                <Stack.Screen name='Article' component={Article} options={{ headerShown: false }} />
+                <Stack.Screen name='Search' component={Search} options={{ headerShown: false }} />
+                <Stack.Screen name='Cart' component={Cart} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
