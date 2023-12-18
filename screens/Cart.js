@@ -15,7 +15,7 @@ const FixedPositionView = () => {
 
     return (
         <SafeAreaView style={styles.safeArea}>
-            <NavBar/>
+            {/* <NavBar/> */}
             <View style={styles.nav}>
                 <Text style={styles.Head}>Your Cart</Text>
                 <Pressable style={styles.goBack} onPress={handleGoBack}>
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
         flex: 1,
         // padding: 20,
         position: 'relative',
+        paddingBottom:124,
     },
     nav: {
         flexDirection: 'row',

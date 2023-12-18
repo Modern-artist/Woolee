@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from "@react-navigation/native"
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
 import HomeScreen from '../screens/HomeScreen';
@@ -21,6 +23,27 @@ const StackNavigation = () => {
     const Stack = createNativeStackNavigator();
 
     function BottomTabs() {
+        const navigation = useNavigation();
+        const [user, setUser] = useState({});
+        useEffect(() => {
+            async function getUser() {
+                try {
+                    const userData = await AsyncStorage.getItem('user');
+                    if (userData) {
+                        // Parse the JSON string to get the user object
+                        const parsedUserData = JSON.parse(userData);
+                        setUser(parsedUserData);
+                    }
+                    else if (!userData) {
+                        navigation.navigate("Login");
+                    }
+                } catch (error) {
+                    console.error('Error retrieving user data from AsyncStorage:', error);
+                }
+            }
+
+            getUser();
+        }, []);
         return (
             <Tab.Navigator>
                 <Tab.Screen
@@ -121,20 +144,20 @@ const StackNavigation = () => {
     }
 
     return (
-        <NavigationContainer>
+        // <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen name='Main' component={BottomTabs} options={{ headerShown: false }} />
-                <Stack.Screen name='Signup' component={SignupScreen} options={{ headerShown: false }} />
-                <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
-                <Stack.Screen name='Shop' component={Shop} options={{ headerShown: false }} />
-                <Stack.Screen name='SetupShop' component={SetupShop} options={{ headerShown: false }} />
                 <Stack.Screen name='Home' component={HomeScreen} options={{ headerShown: false }} />
+                <Stack.Screen name='Shop' component={Shop} options={{ headerShown: false }} />
+                <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
+                <Stack.Screen name='Signup' component={SignupScreen} options={{ headerShown: false }} />
+                <Stack.Screen name='SetupShop' component={SetupShop} options={{ headerShown: false }} />
                 <Stack.Screen name='NewsTrends' component={NewsTrends} options={{ headerShown: false }} />
                 <Stack.Screen name='Article' component={Article} options={{ headerShown: false }} />
                 <Stack.Screen name='Search' component={Search} options={{ headerShown: false }} />
                 <Stack.Screen name='Cart' component={Cart} options={{ headerShown: false }} />
             </Stack.Navigator>
-        </NavigationContainer>
+        // </NavigationContainer>
     );
 };
 

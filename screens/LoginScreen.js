@@ -1,12 +1,63 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Image, KeyboardAvoidingView, TextInput, Pressable } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import logo from '../assets/logo.png';
 import { useNavigation } from "@react-navigation/native"
+import axios from 'axios';
 
 
 const LoginScreen = () => {
   const navigation = useNavigation();
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    async function getUser() {
+      try {
+        const userData = await AsyncStorage.getItem('user');
+        if (userData) {
+          // Parse the JSON string to get the user object
+          const parsedUserData = JSON.parse(userData);
+          setUser(parsedUserData);
+        }
+      } catch (error) {
+        console.error('Error retrieving user data from AsyncStorage:', error);
+      }
+    }
+    getUser();
+    if (user=={}){
+      navigation.navigate("Main");
+    }
+  },[])
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
 
+  const handleChange = (key, value) => {
+    setFormData({ ...formData, [key]: value });
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post('https://woolee-backend-riosumit.vercel.app/api/login', formData);
+      console.log('Login response:', response.data);
+
+      if (response.data.success) {
+        const userData = {
+          token: response.data.user.token,
+          role: response.data.user.role,
+          name: response.data.user.name,
+          email: response.data.user.email,
+        };
+        await AsyncStorage.setItem('user', JSON.stringify(userData)); 
+
+        navigation.navigate("Main", { userData });
+      } else {
+        console.error('Login failed:', response.data.message);
+      }
+    } catch (error) {
+      console.error('Login failed', error);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
@@ -17,17 +68,26 @@ const LoginScreen = () => {
             <Text style={styles.headerText}>Login</Text>
             <Text style={styles.subHeaderText}>Login to your account</Text>
           </View>
-
           <View style={styles.inputContainer}>
-            <Text style={styles.label}>Email Id</Text>
-            <TextInput style={styles.input} placeholder='Email' />
+          <Text style={styles.label}>Email Id</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Email"
+              onChangeText={(text) => handleChange('email', text)} // Use handleChange for email
+            />
           </View>
 
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Password</Text>
-            <TextInput style={styles.input} placeholder='Password' secureTextEntry />
+            <TextInput
+              style={styles.input}
+              placeholder="Password"
+              secureTextEntry
+              onChangeText={(text) => handleChange('password', text)} // Use handleChange for password
+            />
           </View>
-          <Pressable style={styles.regBtn}>
+
+          <Pressable onPress={handleSubmit} style={styles.regBtn}>
             <Text style={styles.btnText}>Login now</Text>
           </Pressable>
           <Pressable onPress={() => navigation.navigate("Signup")} style={styles.loginDir}>
@@ -51,7 +111,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: 'center',
     gap: 20,
-    paddingTop:40,
+    paddingTop: 40,
     alignItems: 'center',
     width: '100%'
   },

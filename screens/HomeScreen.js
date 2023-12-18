@@ -1,15 +1,37 @@
 import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Pressable } from 'react-native'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import certifiedLogo from '../assets/g8.png';
 import { Ionicons, MaterialIcons, Feather, FontAwesome } from '@expo/vector-icons';
 import { SliderBox } from "react-native-image-slider-box";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from "@react-navigation/native"
 import JobCard from '../components/JobCard';
 import NavBar from '../components/NavBar';
 import ShopStack from '../navigation/ShopStack';
 
-
 const HomeScreen = () => {
+    const navigation = useNavigation();
+    const [user, setUser] = useState({});
+    useEffect(() => {
+        async function getUser() {
+            try {
+                const userData = await AsyncStorage.getItem('user');
+                if (userData) {
+                    // Parse the JSON string to get the user object
+                    console.log(userData)
+                    const parsedUserData = JSON.parse(userData);
+                    setUser(parsedUserData);
+                }
+                else if (!userData) {
+                    navigation.navigate("Login");
+                }
+            } catch (error) {
+                console.error('Error retrieving user data from AsyncStorage:', error);
+            }
+        }
 
+        getUser();
+    }, []);
        const bannerImg = [
         require('../assets/homeImgs/1.png'),
         require('../assets/homeImgs/2.png'),
@@ -21,6 +43,7 @@ const HomeScreen = () => {
     ];
     return (
         <SafeAreaView>
+            {/* <StackNavigation /> */}
             <NavBar/>
             <ScrollView>
                 <View style={{paddingVertical:16,width:'90%',}}>
@@ -29,11 +52,11 @@ const HomeScreen = () => {
                         autoPlay
                         circleLoop
                         dotColor="#141414"
-                        ImageComponentStyle={{ width: '90%', margin: 'auto', borderRadius: '12',borderWidth:2,borderColor:'#aaaaaa' }}
+                        ImageComponentStyle={{ width: '90%', margin: 'auto', borderRadius: 12,borderWidth:2,borderColor:'#aaaaaa' }}
                         inactiveDotColor="#AAAAAA"
                     />
                 </View>
-
+                <Text style={styles.title}>{user.name}</Text>
                 <View style={styles.catContainer}>
                     <Pressable>
                         <Ionicons name="filter" size={24} color="black" />

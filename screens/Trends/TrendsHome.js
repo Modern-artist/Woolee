@@ -27,7 +27,7 @@ const TrendsHome = () => {
                 <View>
                     <SliderBox
                         images={bannerImages}
-                        autoPlay
+                        autoPlay={true}
                         circleLoop
                         dotColor="#141414"
                         ImageComponentStyle={{ width: '100%' }}

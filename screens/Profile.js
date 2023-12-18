@@ -1,10 +1,18 @@
 import { StyleSheet, Text, View, SafeAreaView, Image, Pressable, ScrollView } from 'react-native'
 import React from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from "@react-navigation/native"
 import NavBar from '../components/NavBar';
 import { Feather, AntDesign, MaterialIcons } from '@expo/vector-icons';
 
 
 const Profile = () => {
+    const navigation = useNavigation();
+    async function logout(){
+        // console.log('logout is clicked'+JSON.stringify({}))
+        await AsyncStorage.removeItem('user')
+        navigation.navigate("Login");
+    }
     return (
         <SafeAreaView >
             <NavBar />
@@ -74,7 +82,7 @@ const Profile = () => {
                             </View>
                             <AntDesign name="right" size={24} color="#AAAAAA" />
                         </Pressable>
-                        <Pressable style={styles.optionPressable}>
+                        <Pressable onPress={logout} style={styles.optionPressable}>
                             <View style={styles.optionIconName}>
                                 <Feather name="log-out" size={24} color="black" />
                                 <Text style={styles.optionName}>Logout</Text>
