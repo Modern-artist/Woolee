@@ -23,9 +23,7 @@ function MyTabs() {
             }}>
             <Tab.Screen name="Trending" component={TrendsHome} />
             <Tab.Screen name="Educational" component={EduTab} />
-            <Tab.Screen name="Article" component={Article} />
-            <Tab.Screen name="For Sale" component={ForSale} />
-            <Tab.Screen name="Sold" component={Sold} />
+            {/* <Tab.Screen name="Article" component={Article} /> */}
             <Tab.Screen name="Farming" component={Farming} />
         </Tab.Navigator>
     );
@@ -58,7 +56,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     content: {
-        paddingHorizontal: 20,
-        marginTop: 10, // Adjust as needed
+        padding: 40,
+        // marginTop: 10, 
     },
 });

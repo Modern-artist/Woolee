@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { SliderBox } from 'react-native-image-slider-box';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import NewsCard from '../../components/NewsCard';
+import trendingWoolArticles from '../Trends/trendingWoolArticles';
+import { useNavigation } from "@react-navigation/native"
 
 const TrendsHome = () => {
     const bannerImages = [
@@ -36,10 +38,13 @@ const TrendsHome = () => {
                 </View>
 
                 <View style={{ paddingHorizontal: 20 }}>
-                    <NewsCard />
-                    <NewsCard />
-                    <NewsCard />
-                    <NewsCard />
+                    {trendingWoolArticles.map((article) => (
+                        <NewsCard
+                            key={article.id}
+                            article={article}
+                            onPress={() => navigation.navigate("Article", { article })}
+                        />
+                    ))}
                 </View>
             </ScrollView>
         </View>

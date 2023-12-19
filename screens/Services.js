@@ -2,6 +2,14 @@ import { StyleSheet, Text, View, Pressable, SafeAreaView, ScrollView, Image } fr
 import React from 'react'
 import { Feather } from '@expo/vector-icons';
 import NavBar from '../components/NavBar';
+import Shering from '../assets/services/Sh.jpeg';
+import Grading from '../assets/services/Gr.jpeg';
+import Carding from '../assets/services/Ca.jpeg';
+import Spinning from '../assets/services/Sp.jpeg';
+import Dyeing from '../assets/services/Dy.jpeg';
+import Blending from '../assets/services/Bl.jpeg';
+import WareHouse from '../assets/services/WH.jpeg';
+import AnimalHealth from '../assets/services/AH.jpeg';
 const Services = () => {
     return (
         <SafeAreaView>
@@ -53,8 +61,8 @@ const Services = () => {
                         <Text style={styles.serviceTitle}>
                             Shering
                         </Text>
-                        <Image source={{ uri: 'https://images.unsplash.com/photo-1627730433054-9ccb05ef8c6a?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }}
-                            style={{ width: '100%', height: 200, borderRadius: 12, }} ></Image>
+                        <Image source={Shering} 
+                            style={{ width: '100%', borderRadius: 12, }} ></Image>
                         <Text style={styles.serviceBio}>
                             Combining different types or colors of wool fibers to achieve specific characteristics in the final product.
                             Helps create blends with desired qualities, such as softness or durability.
@@ -66,10 +74,10 @@ const Services = () => {
                     </View>
                     <View style={styles.serviceCard}>
                         <Text style={styles.serviceTitle}>
-                            Shering
+                            Grading
                         </Text>
-                        <Image source={{ uri: 'https://images.unsplash.com/photo-1627730433054-9ccb05ef8c6a?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }}
-                            style={{ width: '100%', height: 200, borderRadius: 12, }} ></Image>
+                        <Image source={Grading} 
+                            style={{ width: '100%', borderRadius: 12, }} ></Image>
                         <Text style={styles.serviceBio}>
                             Combining different types or colors of wool fibers to achieve specific characteristics in the final product.
                             Helps create blends with desired qualities, such as softness or durability.
@@ -79,6 +87,82 @@ const Services = () => {
                             <Feather name="arrow-right-circle" size={24} color="white" />
                         </Pressable>
                     </View>
+                    <View style={styles.serviceCard}>
+                        <Text style={styles.serviceTitle}>
+                            Spinning
+                        </Text>
+                        <Image source={Spinning} 
+                            style={{ width: '100%', borderRadius: 12, }} ></Image>
+                        <Text style={styles.serviceBio}>
+                            Combining different types or colors of wool fibers to achieve specific characteristics in the final product.
+                            Helps create blends with desired qualities, such as softness or durability.
+                        </Text>
+                        <Pressable style={styles.seeBtn}>
+                            <Text style={styles.seeText}>Get Services</Text>
+                            <Feather name="arrow-right-circle" size={24} color="white" />
+                        </Pressable>
+                    </View>
+                    <View style={styles.serviceCard}>
+                        <Text style={styles.serviceTitle}>
+                            Dyeing
+                        </Text>
+                        <Image source={Dyeing} 
+                            style={{ width: '100%', borderRadius: 12, }} ></Image>
+                        <Text style={styles.serviceBio}>
+                            Combining different types or colors of wool fibers to achieve specific characteristics in the final product.
+                            Helps create blends with desired qualities, such as softness or durability.
+                        </Text>
+                        <Pressable style={styles.seeBtn}>
+                            <Text style={styles.seeText}>Get Services</Text>
+                            <Feather name="arrow-right-circle" size={24} color="white" />
+                        </Pressable>
+                    </View>
+                    <View style={styles.serviceCard}>
+                        <Text style={styles.serviceTitle}>
+                            Blending
+                        </Text>
+                        <Image source={Blending} 
+                            style={{ width: '100%', borderRadius: 12, }} ></Image>
+                        <Text style={styles.serviceBio}>
+                            Combining different types or colors of wool fibers to achieve specific characteristics in the final product.
+                            Helps create blends with desired qualities, such as softness or durability.
+                        </Text>
+                        <Pressable style={styles.seeBtn}>
+                            <Text style={styles.seeText}>Get Services</Text>
+                            <Feather name="arrow-right-circle" size={24} color="white" />
+                        </Pressable>
+                    </View>
+                    <View style={styles.serviceCard}>
+                        <Text style={styles.serviceTitle}>
+                            Ware House
+                        </Text>
+                        <Image source={WareHouse} 
+                            style={{ width: '100%', borderRadius: 12, }} ></Image>
+                        <Text style={styles.serviceBio}>
+                            Combining different types or colors of wool fibers to achieve specific characteristics in the final product.
+                            Helps create blends with desired qualities, such as softness or durability.
+                        </Text>
+                        <Pressable style={styles.seeBtn}>
+                            <Text style={styles.seeText}>Get Services</Text>
+                            <Feather name="arrow-right-circle" size={24} color="white" />
+                        </Pressable>
+                    </View>
+                    <View style={styles.serviceCard}>
+                        <Text style={styles.serviceTitle}>
+                            Animal Health
+                        </Text>
+                        <Image source={AnimalHealth} 
+                            style={{ width: '100%', borderRadius: 12, }} ></Image>
+                        <Text style={styles.serviceBio}>
+                            Combining different types or colors of wool fibers to achieve specific characteristics in the final product.
+                            Helps create blends with desired qualities, such as softness or durability.
+                        </Text>
+                        <Pressable style={styles.seeBtn}>
+                            <Text style={styles.seeText}>Get Services</Text>
+                            <Feather name="arrow-right-circle" size={24} color="white" />
+                        </Pressable>
+                    </View>
+                    
                 </View>
             </ScrollView>
         </SafeAreaView>

@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
         paddingBottom:124,
     },
     nav: {
+        paddingTop:60,
         flexDirection: 'row',
         alignItems: 'center',
         borderBottomWidth:2,

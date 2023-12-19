@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -45,10 +45,16 @@ const StackNavigation = () => {
             getUser();
         }, []);
         return (
-            <Tab.Navigator>
+            <Tab.Navigator 
+                screenOptions={{
+                    tabBarStyle: {
+                        height:80,
+                        paddingBottom: 20,
+                    } }}>
                 <Tab.Screen
                     name='Home'
                     component={HomeScreen}
+                    
                     options={{
                         tabBarLabel: "Home",
                         tabBarLabelStyle: ({ focused }) => ({
@@ -145,18 +151,18 @@ const StackNavigation = () => {
 
     return (
         // <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name='Main' component={BottomTabs} options={{ headerShown: false }} />
-                <Stack.Screen name='Home' component={HomeScreen} options={{ headerShown: false }} />
-                <Stack.Screen name='Shop' component={Shop} options={{ headerShown: false }} />
-                <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
-                <Stack.Screen name='Signup' component={SignupScreen} options={{ headerShown: false }} />
-                <Stack.Screen name='SetupShop' component={SetupShop} options={{ headerShown: false }} />
-                <Stack.Screen name='NewsTrends' component={NewsTrends} options={{ headerShown: false }} />
-                <Stack.Screen name='Article' component={Article} options={{ headerShown: false }} />
-                <Stack.Screen name='Search' component={Search} options={{ headerShown: false }} />
-                <Stack.Screen name='Cart' component={Cart} options={{ headerShown: false }} />
-            </Stack.Navigator>
+        <Stack.Navigator>
+            <Stack.Screen name='Main' component={BottomTabs} options={{ headerShown: false }} />
+            {/* <Stack.Screen name='Home' component={HomeScreen} options={{ headerShown: false }} /> */}
+            {/* <Stack.Screen name='Shop' component={Shop} options={{ headerShown: false }} /> */}
+            <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
+            <Stack.Screen name='Signup' component={SignupScreen} options={{ headerShown: false }} />
+            <Stack.Screen name='SetupShop' component={SetupShop} options={{ headerShown: false }} />
+            {/* <Stack.Screen name='NewsTrends' component={NewsTrends} options={{ headerShown: false }} /> */}
+            <Stack.Screen name='Article' component={Article} options={{ headerShown: false }} />
+            <Stack.Screen name='Search' component={Search} options={{ headerShown: false }} />
+            <Stack.Screen name='Cart' component={Cart} options={{ headerShown: false }} />
+        </Stack.Navigator>
         // </NavigationContainer>
     );
 };

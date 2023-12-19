@@ -1,62 +1,43 @@
 import { StyleSheet, Text, View, Pressable, Image } from 'react-native'
 import React from 'react'
 import { AntDesign, FontAwesome5, Entypo } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
+
 // import { createStackNavigator } from '@react-navigation/stack';
-const NewsCard = () => {
-
-    // const Stack = createStackNavigator();
-
-    // function MyStack() {
-    //     return (
-    //         <Stack.Navigator>
-    //             <Stack.Screen name="Home" component={Home} />
-    //             <Stack.Screen name="Home" component={Home} />
-    //         </Stack.Navigator>
-    //     );
-    // }
-
-    const handlePress1 = () => {
-        console.log('Pressable 1 pressed!');
-        // Add any other actions you want to perform on Pressable 1 press
-    };
-
-    const handlePress2 = () => {
-        console.log('Pressable 2 pressed!');
-        // Add any other actions you want to perform on Pressable 2 press
-    };
+const NewsCard = ({ article }) => {
+    const navigation = useNavigation();
 
     return (
-        <Pressable style={styles.newsCard}
-            onPress={handlePress1}>
+        <Pressable
+            onPress={() => navigation.navigate("Article", { article })}
+            style={styles.newsCard}
+        >
             <View style={styles.authDetail}>
                 <View style={styles.authDes}>
-                    {/* <Image ></Image> */}
                     <AntDesign name="taobao-circle" size={24} color="black" />
-                    <Text style={styles.authName}>Ministry of Textile</Text>
+                    <Text style={styles.authName}>{article.author}</Text>
                 </View>
-                <Text style={styles.postDate} >Aug 9</Text>
+                <Text style={styles.postDate}>{article.date}</Text>
             </View>
-            <Text style={styles.newsTitle} >Improving Wool Farming</Text>
-            <View style={styles.newsBioImg}  >
-                <Text style={styles.newsBio} numberOfLines={3} ellipsizeMode="tail">A Comprehensive Overview and Educational Resource for Farmers Overview </Text>
+            <Text style={styles.newsTitle}>{article.title}</Text>
+            <View style={styles.newsBioImg}>
+                <Text style={styles.newsBio} numberOfLines={3} ellipsizeMode="tail">
+                    {article.content.substring(0, 150)}...
+                </Text>
                 <Image
-                    width={120}
-                    height={80}
-                    style={{ borderRadius: 6, resizeMode: 'cover' }}
-
-                    source={{
-                        uri: 'https://picsum.photos/200/300',
-                    }} />
+                    style={{ borderRadius: 6, resizeMode: 'cover', width: 120, height: 80 }}
+                    source={{ uri: article.imageUri }}
+                />
             </View>
             <View style={styles.bottomInfo}>
-                <Text style={styles.readingTime}>12 min read</Text>
+                <Text style={styles.readingTime}>{article.readTime}</Text>
                 <View style={styles.bottomBtns}>
-                <Pressable onPress={handlePress2} >
-                    <FontAwesome5 name="bookmark" size={24} color="black" />
-                </Pressable>
-                <Pressable onPress={handlePress2} >
-                    <Entypo name="dots-three-vertical" size={24} color="black" />
-                </Pressable>
+                    <Pressable onPress={() => navigation.navigate("Article", { article })}>
+                        <FontAwesome5 name="bookmark" size={24} color="black" />
+                    </Pressable>
+                    <Pressable onPress={() => { /* Add your action for the vertical dots button */ }}>
+                        <Entypo name="dots-three-vertical" size={24} color="black" />
+                    </Pressable>
                 </View>
             </View>
         </Pressable>
