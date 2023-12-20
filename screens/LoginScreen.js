@@ -4,29 +4,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import logo from '../assets/logo.png';
 import { useNavigation } from "@react-navigation/native"
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
+import LoadingScreen from './LoadingScreen';
 
 
 const LoginScreen = () => {
-  const navigation = useNavigation();
-  const [user, setUser] = useState({});
-  useEffect(() => {
-    async function getUser() {
-      try {
-        const userData = await AsyncStorage.getItem('user');
-        if (userData) {
-          // Parse the JSON string to get the user object
-          const parsedUserData = JSON.parse(userData);
-          setUser(parsedUserData);
-        }
-      } catch (error) {
-        console.error('Error retrieving user data from AsyncStorage:', error);
-      }
-    }
-    getUser();
-    if (user=={}){
-      navigation.navigate("Main");
-    }
-  },[])
+  const { login } = useAuth();
+  const [isLoading, setIsLoading] = useState(false)
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -37,29 +22,21 @@ const LoginScreen = () => {
   };
 
   const handleSubmit = async () => {
+    setIsLoading(true)
     try {
       const response = await axios.post('https://woolee-backend-riosumit.vercel.app/api/login', formData);
-      console.log('Login response:', response.data);
-
-      if (response.data.success) {
-        const userData = {
-          token: response.data.user.token,
-          role: response.data.user.role,
-          name: response.data.user.name,
-          email: response.data.user.email,
-        };
-        await AsyncStorage.setItem('user', JSON.stringify(userData)); 
-
-        navigation.navigate("Main", { userData });
-      } else {
-        console.error('Login failed:', response.data.message);
-      }
+      console.log('Login successful', response.data.message);
+      login(response.data.user);
+      setIsLoading(false)
     } catch (error) {
       console.error('Login failed', error);
+      setIsLoading(false)
     }
   };
   return (
     <SafeAreaView style={styles.container}>
+      {isLoading && <LoadingScreen />}
+      {!isLoading &&
       <View style={styles.content}>
         <Image source={logo} style={styles.logo} />
 
@@ -94,7 +71,7 @@ const LoginScreen = () => {
             <Text style={styles.loginText}>Don't have an account? <Text style={{ fontWeight: '700' }}>Sign up</Text></Text>
           </Pressable>
         </KeyboardAvoidingView>
-      </View>
+      </View>}
     </SafeAreaView>
   )
 }

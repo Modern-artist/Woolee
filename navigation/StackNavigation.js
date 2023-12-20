@@ -13,37 +13,23 @@ import Shop from '../screens/Shop';
 import Profile from '../screens/Profile';
 import Services from '../screens/Services';
 import Search from '../screens/Search';
+import Product from '../screens/Product';
 import Cart from '../screens/Cart';
+import Shearing from '../screens/Shearing';
 import Article from '../screens/Trends/Article';
+import Video from '../screens/Trends/Video';
+import Landing from '../screens/Home/Landing';
 import { Feather, MaterialIcons, Octicons } from '@expo/vector-icons';
 import NewsTrends from '../screens/NewsTrends';
+import { useAuth } from '../context/AuthContext';
 
 const StackNavigation = () => {
+    const{user, isLoggedIn} = useAuth()
     const Tab = createBottomTabNavigator();
     const Stack = createNativeStackNavigator();
 
     function BottomTabs() {
         const navigation = useNavigation();
-        const [user, setUser] = useState({});
-        useEffect(() => {
-            async function getUser() {
-                try {
-                    const userData = await AsyncStorage.getItem('user');
-                    if (userData) {
-                        // Parse the JSON string to get the user object
-                        const parsedUserData = JSON.parse(userData);
-                        setUser(parsedUserData);
-                    }
-                    else if (!userData) {
-                        navigation.navigate("Login");
-                    }
-                } catch (error) {
-                    console.error('Error retrieving user data from AsyncStorage:', error);
-                }
-            }
-
-            getUser();
-        }, []);
         return (
             <Tab.Navigator 
                 screenOptions={{
@@ -67,6 +53,7 @@ const StackNavigation = () => {
                         ),
                     }}
                 />
+                {isLoggedIn && user?.role !== "producer" && (
                 <Tab.Screen
                     name='Shop'
                     component={Shop}
@@ -86,6 +73,7 @@ const StackNavigation = () => {
                         ),
                     }}
                 />
+                )}
                 <Tab.Screen
                     name='Trends'
                     component={NewsTrends}
@@ -153,15 +141,16 @@ const StackNavigation = () => {
         // <NavigationContainer>
         <Stack.Navigator>
             <Stack.Screen name='Main' component={BottomTabs} options={{ headerShown: false }} />
-            {/* <Stack.Screen name='Home' component={HomeScreen} options={{ headerShown: false }} /> */}
-            {/* <Stack.Screen name='Shop' component={Shop} options={{ headerShown: false }} /> */}
             <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
             <Stack.Screen name='Signup' component={SignupScreen} options={{ headerShown: false }} />
             <Stack.Screen name='SetupShop' component={SetupShop} options={{ headerShown: false }} />
-            {/* <Stack.Screen name='NewsTrends' component={NewsTrends} options={{ headerShown: false }} /> */}
             <Stack.Screen name='Article' component={Article} options={{ headerShown: false }} />
+            <Stack.Screen name='Product' component={Product} options={{ headerShown: false }} />
             <Stack.Screen name='Search' component={Search} options={{ headerShown: false }} />
             <Stack.Screen name='Cart' component={Cart} options={{ headerShown: false }} />
+            <Stack.Screen name='Shearing' component={Shearing} options={{ headerShown: false }} />
+            <Stack.Screen name='Video' component={Video} options={{ headerShown: false }} />
+            <Stack.Screen name='Landing' component={Landing} options={{ headerShown: false }} />
         </Stack.Navigator>
         // </NavigationContainer>
     );

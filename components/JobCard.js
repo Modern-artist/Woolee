@@ -2,38 +2,43 @@ import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Pressable } fr
 import React from 'react'
 import certifiedLogo from '../assets/g8.png';
 import { Ionicons, MaterialIcons, Feather, FontAwesome } from '@expo/vector-icons';
-const JobCard = () => {
-  return (
-      <View style={styles.jobCard}>
-          <Text style={styles.title}>Pashmina Wool (Cashmere)</Text>
-          <View style={styles.subInfo}>
-              <View style={styles.subCert}>
-                  <Image source={certifiedLogo} style={styles.certifiedLogo}></Image>
-                  <Text style={styles.subTitle}>A+ Certified</Text>
-              </View>
-              <Text style={styles.subTitle}>Posted - 12hrs ago</Text>
-          </View>
-          <View style={styles.Detail}>
-              <View>
-                  <View style={styles.subDetail}><FontAwesome name="inr" size={20} color="black" /><Text style={styles.detailVal}>1923/kg</Text></View>
-                  <Text style={styles.detailLabel}>Price</Text>
-              </View>
-              <View>
-                  <View style={styles.subDetail}><Text style={styles.detailVal}>120kg</Text></View>
-                  <Text style={styles.detailLabel}>Quantity</Text>
-              </View>
-              <View>
-                  <View style={styles.subDetail}><FontAwesome name="user-secret" size={24} color="black" /><Text style={styles.detailVal}>Arjun Ready</Text></View>
-                  <Text style={styles.detailLabel}>Verified Seller</Text>
-              </View>
-          </View>
-          <Text style={styles.cardBio}>Origin: Originally from Spain, but also bred in India.
-              Characteristics: Soft, fine, and luxurious. Known for its excellent warmth and moisture-wicking properties.</Text>
-          <Pressable style={styles.seeBtn}>
-              <Text style={styles.seeText}>See More</Text>
-          </Pressable>
-      </View>
-  )
+import { useNavigation } from "@react-navigation/native";
+
+const JobCard = ({ product }) => {
+    const navigation = useNavigation();
+
+    return (
+        <Pressable onPress={() => navigation.navigate("Product", { product })} style={styles.jobCard}>
+            <Text style={styles.title}>{product.batch.type}</Text>
+            <View style={styles.subInfo}>
+                <View style={styles.subCert}>
+                    <Image source={certifiedLogo} style={styles.certifiedLogo}></Image>
+                    <Text style={styles.subTitle}>A+ Certified</Text>
+                </View>
+                <View style={styles.subCert}>
+                    <MaterialIcons name="date-range" size={24} color="#AAAAAA" />
+                    <Text style={styles.subTitle}>{product.batch.production_date}</Text>
+                </View>
+                
+            </View>
+            <View style={styles.Detail}>
+                <View>
+                    <View style={styles.subDetail}><FontAwesome name="inr" size={20} color="black" /><Text style={styles.detailVal}>{product.price}/kg</Text></View>
+                    <Text style={styles.detailLabel}>Price</Text>
+                </View>
+                <View>
+                    <View style={styles.subDetail}><FontAwesome name="user-secret" size={24} color="black" /><Text style={styles.detailVal}>{product.producer.farm_name}</Text></View>
+                    <Text style={styles.detailLabel}>Verified Seller</Text>
+                </View>
+            </View>
+            <Text style={styles.cardBio}>Origin: Originally from Spain, but also bred in India.
+                Characteristics: Soft, fine, and luxurious. Known for its excellent warmth and moisture-wicking properties.</Text>
+            <View style={styles.seeBtn}>
+                <Text style={styles.seeText}>See More</Text>
+                <Feather name="arrow-right-circle" size={24} color="white" />
+            </View>
+        </Pressable>
+    )
 }
 
 export default JobCard
@@ -80,9 +85,9 @@ const styles = StyleSheet.create({
     Detail: {
         // backgroundColor: 'red',
         display: 'flex',
-        flexWrap:'wrap',
+        flexWrap: 'wrap',
         gap: 40,
-        rowGap:12,
+        rowGap: 12,
         flexDirection: 'row',
         // paddingVertical: 12,
         alignItems: 'center',
@@ -113,8 +118,11 @@ const styles = StyleSheet.create({
         color: '#141414',
     },
     seeBtn: {
+        flexDirection:'row',
+        justifyContent:'center',
         display: 'flex',
         width: '100%',
+        gap:12,
         paddingVertical: 12,
         backgroundColor: '#111111',
         alignItems: 'center',

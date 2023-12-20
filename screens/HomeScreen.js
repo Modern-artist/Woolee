@@ -1,51 +1,53 @@
-import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Pressable } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView,} from 'react-native'
 import React, {useEffect, useState} from 'react'
-import certifiedLogo from '../assets/g8.png';
-import { Ionicons, MaterialIcons, Feather, FontAwesome } from '@expo/vector-icons';
-import { SliderBox } from "react-native-image-slider-box";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from "@react-navigation/native"
-import JobCard from '../components/JobCard';
 import NavBar from '../components/NavBar';
-import ShopStack from '../navigation/ShopStack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import TrendsHome from '../screens/Trends/TrendsHome'
+import EduTab from '../screens/Trends/EduTab'
+import Farming from '../screens/Trends/Farming'
+import Video from './Trends/Video';
+import Landing from './Home/Landing';
 
-const HomeScreen = () => {
-    const navigation = useNavigation();
-    const [user, setUser] = useState({});
-    useEffect(() => {
-        async function getUser() {
-            try {
-                const userData = await AsyncStorage.getItem('user');
-                if (userData) {
-                    // Parse the JSON string to get the user object
-                    console.log(userData)
-                    const parsedUserData = JSON.parse(userData);
-                    setUser(parsedUserData);
-                }
-                else if (!userData) {
-                    navigation.navigate("Login");
-                }
-            } catch (error) {
-                console.error('Error retrieving user data from AsyncStorage:', error);
-            }
-        }
-
-        getUser();
-    }, []);
-       const bannerImg = [
-        require('../assets/homeImgs/1.png'),
-        require('../assets/homeImgs/2.png'),
-        require('../assets/homeImgs/3.png'),
-        require('../assets/homeImgs/4.png'),
-        require('../assets/homeImgs/5.png'),
-        require('../assets/homeImgs/6.png'),
-        require('../assets/homeImgs/7.png'),
-    ];
+const Tab = createMaterialTopTabNavigator();
+function MyTabs() {
     return (
-        <SafeAreaView>
+        <Tab.Navigator
+            tabBarOptions={{
+                labelStyle: { fontWeight: '600' },
+                tabStyle: { width: 'auto' },
+                style: { backgroundColor: 'transparent', },
+                indicatorStyle: { backgroundColor: '#3498db', },
+                scrollEnabled: true,
+            }}>
+            <Tab.Screen name="For you" component={Landing} />
+            <Tab.Screen name="Raw wool" component={EduTab} />
+            {/* <Tab.Screen name="Article" component={Article} /> */}
+            <Tab.Screen name="Processed Wool" component={Farming} />
+            <Tab.Screen name="Woolen Items" component={Video} />
+        </Tab.Navigator>
+    );
+}
+const HomeScreen = () => {
+    // const navigation = useNavigation();
+    // const { isLoggedIn, user } = useAuth();
+    // const [marketPlace, setMarketPlace] = useState([])
+    // const [isLoading, setIsLoading] = useState(false)
+
+    //    const bannerImg = [
+    //     require('../assets/homeImgs/1.png'),
+    //     require('../assets/homeImgs/2.png'),
+    //     require('../assets/homeImgs/3.png'),
+    //     require('../assets/homeImgs/4.png'),
+    //     require('../assets/homeImgs/5.png'),
+    //     require('../assets/homeImgs/6.png'),
+    //     require('../assets/homeImgs/7.png'),
+    // ];
+    return (
+        <SafeAreaView style={styles.container}>
             {/* <StackNavigation /> */}
             <NavBar/>
-            <ScrollView>
+            <MyTabs/>
+            {/* <ScrollView>
                 <View style={{paddingVertical:16,width:'90%',}}>
                     <SliderBox
                         images={bannerImg}
@@ -56,8 +58,10 @@ const HomeScreen = () => {
                         inactiveDotColor="#AAAAAA"
                     />
                 </View>
-                <Text style={styles.title}>{user.name}</Text>
-                <View style={styles.catContainer}>
+                <Text style={styles.title}>{isLoggedIn && user?.name}</Text>
+                <Text style={styles.title}>{isLoggedIn && user?.role}</Text> */}
+                {/* <Text style={styles.title}>{console.log(user.role !== "producer")}</Text> */}
+                {/* <View style={styles.catContainer}>
                     <Pressable>
                         <Ionicons name="filter" size={24} color="black" />
                     </Pressable>
@@ -86,14 +90,21 @@ const HomeScreen = () => {
                             </Pressable>
                         </View>
                     </ScrollView>
-                </View>
+                </View> */}
                 {/* <ShopStack/> */}
+                {/* {marketPlace.map((product) => (
+                    <JobCard
+                        key={product.id}
+                        product={product}
+                        onPress={() => navigation.navigate("Product", { product })}
+                    />
+                ))} */}
+                {/* <JobCard />
                 <JobCard />
                 <JobCard />
                 <JobCard />
-                <JobCard />
-                <JobCard />
-            </ScrollView>
+                <JobCard /> */}
+            {/* </ScrollView> */}
         </SafeAreaView>
     )
 }
@@ -101,6 +112,9 @@ const HomeScreen = () => {
 export default HomeScreen
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
     catContainer: {
         display: 'flex',
         alignItems: 'center',

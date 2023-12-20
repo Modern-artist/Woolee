@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, ScrollView, Pressable, Image } from 'react-native'
 import React from 'react'
-import { AntDesign, FontAwesome5, Entypo } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native"
 import NewsCard from '../../components/NewsCard';
 

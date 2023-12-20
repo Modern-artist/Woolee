@@ -10,7 +10,11 @@ import Dyeing from '../assets/services/Dy.jpeg';
 import Blending from '../assets/services/Bl.jpeg';
 import WareHouse from '../assets/services/WH.jpeg';
 import AnimalHealth from '../assets/services/AH.jpeg';
+import { useNavigation } from "@react-navigation/native";
+
+
 const Services = () => {
+    const navigation = useNavigation();
     return (
         <SafeAreaView>
             <NavBar />
@@ -18,7 +22,7 @@ const Services = () => {
                 <View style={styles.container}>
                     <Text style={styles.serviceHead}>Services we Provide:</Text>
                     <View style={styles.twoTiles}>
-                        <Pressable style={styles.tiles}>
+                        <Pressable style={styles.tiles} onPress={() => navigation.navigate("Shearing")}>
                             <Text style={styles.label}>Shearing</Text>
                             <Feather name="arrow-right-circle" size={24} color="black" />
                         </Pressable>

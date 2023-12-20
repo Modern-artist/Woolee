@@ -4,63 +4,34 @@ import logo from '../assets/logo.png';
 import { useNavigation } from "@react-navigation/native"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 
 const SignupScreen = () => {
-  const navigation = useNavigation();
-  const [user, setUser] = useState({});
+  const { login } = useAuth();
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
   });
 
-  useEffect(() => {
-    async function getUser() {
-      try {
-        const userData = await AsyncStorage.getItem('user');
-        if (userData) {
-          // Parse the JSON string to get the user object
-          const parsedUserData = JSON.parse(userData);
-          setUser(parsedUserData);
-
-          // If the user is already logged in, navigate to the "Main" screen
-          navigation.navigate("Main");
-        }
-      } catch (error) {
-        console.error('Error retrieving user data from AsyncStorage:', error);
-      }
-    }
-
-    getUser();
-  }, [navigation]);
-
-  const handleChange = (key, value) => {
-    console.log(value);
-    setFormData({ ...formData, [key]: value });
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async () => {
+    setIsLoading(true)
     try {
       const response = await axios.post('https://woolee-backend-riosumit.vercel.app/api/register', formData);
-      console.log('Register response:', response.data);
-
-      if (response.data.success) {
-        const userData = {
-          token: response.data.user.token,
-          role: response.data.user.role,
-          name: response.data.user.name,
-          email: response.data.user.email,
-        };
-        await AsyncStorage.setItem('user', JSON.stringify(userData));
-
-        navigation.navigate("Main", { userData });
-      } else {
-        console.error('Login failed:', response.data.message);
-      }
+      console.log('Registration successful', response.data.message);
+      login(response.data.user);
+      setIsLoading(false)
     } catch (error) {
-      console.error('Login failed', error);
+      console.error('Registration failed', error);
+      setIsLoading(false)
     }
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>

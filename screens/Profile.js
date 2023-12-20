@@ -4,15 +4,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from "@react-navigation/native"
 import NavBar from '../components/NavBar';
 import { Feather, AntDesign, MaterialIcons } from '@expo/vector-icons';
+import { useAuth } from '../context/AuthContext';
 
 
 const Profile = () => {
     const navigation = useNavigation();
-    async function logout(){
-        // console.log('logout is clicked'+JSON.stringify({}))
-        await AsyncStorage.removeItem('user')
-        navigation.navigate("Login");
-    }
+    const { logout } = useAuth()
+
     return (
         <SafeAreaView >
             <NavBar />
@@ -85,7 +83,7 @@ const Profile = () => {
                         <Pressable onPress={logout} style={styles.optionPressable}>
                             <View style={styles.optionIconName}>
                                 <Feather name="log-out" size={24} color="black" />
-                                <Text style={styles.optionName}>Logout</Text>
+                                <Text style={styles.optionName} onPress={logout}>Logout</Text>
                             </View>
                             <AntDesign name="right" size={24} color="#AAAAAA" />
                         </Pressable>
@@ -127,7 +125,7 @@ const styles = StyleSheet.create({
         // backgroundColor:'red',
         width: "100%",
         flexDirection: 'column',
-        paddingBottom:120
+        paddingBottom: 120
     },
     optionPressable: {
         // backgroundColor:'red',
@@ -145,7 +143,7 @@ const styles = StyleSheet.create({
     optionName: {
         fontSize: 16,
         fontWeight: '600',
-        color:'#141414'
+        color: '#141414'
     },
     optionIconName: {
         display: 'flex',
