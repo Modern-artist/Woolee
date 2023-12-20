@@ -32,6 +32,7 @@ const Shearing = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
+        <Text style={styles.Heading}>Service near Me!</Text>
         {shearer?.map((shearer) => (
           <View style={styles.Card}>
             <View style={styles.authDetail}>
@@ -39,9 +40,10 @@ const Shearing = () => {
                 <AntDesign name="taobao-circle" size={24} color="black" />
                 <Text style={styles.authName}>{shearer?.shearing_company}s</Text>
               </View>
-              <Text style={styles.postDate}>Experience : {shearer?.experience_years}+yrs</Text>
+              <Text style={styles.postDate}>Experience : {shearer?.experience_years}+yrs</Text>x
             </View>
-            <Text style={styles.newsTitle}>Shearing</Text>
+            
+            {/* <Text style={styles.newsTitle}>{shearer?.user.first_name}</Text> */}
             <View style={styles.newsBioImg}>
               <Text style={styles.newsBio} numberOfLines={3} ellipsizeMode="tail">
                 <Ionicons name="ios-location-outline" size={24} color="black" />
@@ -78,8 +80,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 20,
-    // borderBottomColor: '#e7e7e7',
-    // borderBottomWidth: 2,
   },
   Card: {
     // paddingVertical:60,
@@ -117,6 +117,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600'
 
+  },
+  Heading: {
+    fontSize: 24,
+    fontWeight: '700',
+    padding:20,
+    borderColor:'#e7e7e7',
+    borderBottomWidth:2,
   },
   postDate: {
     color: "#AAAAAA"

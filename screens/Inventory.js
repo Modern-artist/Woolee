@@ -2,6 +2,7 @@ import { StyleSheet, Text, View,ScrollView } from 'react-native'
 import React from 'react'
 import InventoryCard from '../components/InventoryCard'
 import { Dropdown } from 'react-native-element-dropdown';
+import DonChart from '../components/donChart';
 
 const Inventory = () => {
 
@@ -21,6 +22,7 @@ const Inventory = () => {
           <Text style={styles.filterLabel}>Filter:</Text>
 
         </View>
+        {/* <DonChart/> */}
       <InventoryCard/>
       <InventoryCard/>
       <InventoryCard/>

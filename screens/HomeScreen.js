@@ -7,6 +7,9 @@ import EduTab from '../screens/Trends/EduTab'
 import Farming from '../screens/Trends/Farming'
 import Video from './Trends/Video';
 import Landing from './Home/Landing';
+import RawWool from './Home/RawWool';
+import ProcWool from './Home/ProcWool';
+import WoolProduct from './Home/WoolProduct';
 
 const Tab = createMaterialTopTabNavigator();
 function MyTabs() {
@@ -20,10 +23,10 @@ function MyTabs() {
                 scrollEnabled: true,
             }}>
             <Tab.Screen name="For you" component={Landing} />
-            <Tab.Screen name="Raw wool" component={EduTab} />
+            <Tab.Screen name="Woolen Items" component={WoolProduct} />
+            <Tab.Screen name="Raw wool" component={RawWool} />
             {/* <Tab.Screen name="Article" component={Article} /> */}
-            <Tab.Screen name="Processed Wool" component={Farming} />
-            <Tab.Screen name="Woolen Items" component={Video} />
+            <Tab.Screen name="Processed Wool" component={ProcWool} />
         </Tab.Navigator>
     );
 }

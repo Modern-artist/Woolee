@@ -15,9 +15,9 @@ function MyTabs() {
             style: { backgroundColor: 'transparent' }, // Change the background color of the tab bar
             // indicatorStyle: { backgroundColor: '#000' },
         }}>
-            <Tab.Screen name="Inventory" component={Inventory} />
             <Tab.Screen name="For Sale" component={ForSale} />
             <Tab.Screen name="Sold" component={Sold} />
+            <Tab.Screen name="Inventory" component={Inventory} />
         </Tab.Navigator>
     );
 }

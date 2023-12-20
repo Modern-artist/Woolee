@@ -26,43 +26,43 @@ const Services = () => {
                             <Text style={styles.label}>Shearing</Text>
                             <Feather name="arrow-right-circle" size={24} color="black" />
                         </Pressable>
-                        <Pressable style={styles.tiles}>
+                        <Pressable style={styles.tiles} onPress={() => navigation.navigate("Shearing")}>
                             <Text style={styles.label}>Wool Grading</Text>
                             <Feather name="arrow-right-circle" size={24} color="black" />
                         </Pressable>
                     </View>
-                    <View style={styles.twoTiles}>
-                        <Pressable style={styles.tiles}>
+                    <View style={styles.twoTiles} >
+                        <Pressable style={styles.tiles} onPress={() => navigation.navigate("Shearing")}>
                             <Text style={styles.label}>Carding</Text>
                             <Feather name="arrow-right-circle" size={24} color="black" />
                         </Pressable>
-                        <Pressable style={styles.tiles}>
+                        <Pressable style={styles.tiles} onPress={() => navigation.navigate("Shearing")}>
                             <Text style={styles.label}>Spinning</Text>
                             <Feather name="arrow-right-circle" size={24} color="black" />
                         </Pressable>
                     </View>
                     <View style={styles.twoTiles}>
-                        <Pressable style={styles.tiles}>
+                        <Pressable style={styles.tiles} onPress={() => navigation.navigate("Shearing")}>
                             <Text style={styles.label}>Dyeing</Text>
                             <Feather name="arrow-right-circle" size={24} color="black" />
                         </Pressable>
-                        <Pressable style={styles.tiles}>
+                        <Pressable style={styles.tiles} onPress={() => navigation.navigate("Shearing")}>
                             <Text style={styles.label}>Blending</Text>
                             <Feather name="arrow-right-circle" size={24} color="black" />
                         </Pressable>
                     </View>
-                    <View style={styles.twoTiles}>
-                        <Pressable style={styles.tiles}>
+                    <View style={styles.twoTiles} >
+                        <Pressable style={styles.tiles} onPress={() => navigation.navigate("Shearing")}>
                             <Text style={styles.label}>Warehouse</Text>
                             <Feather name="arrow-right-circle" size={24} color="black" />
                         </Pressable>
-                        <Pressable style={styles.tiles}>
+                        <Pressable style={styles.tiles} onPress={() => navigation.navigate("Shearing")}>
                             <Text style={styles.label}>Animal Health</Text>
                             <Feather name="arrow-right-circle" size={24} color="black" />
                         </Pressable>
                     </View>
                     <View style={styles.serviceCard}>
-                        <Text style={styles.serviceTitle}>
+                        <Text style={styles.serviceTitle} >
                             Shering
                         </Text>
                         <Image source={Shering} 
@@ -71,7 +71,7 @@ const Services = () => {
                             Combining different types or colors of wool fibers to achieve specific characteristics in the final product.
                             Helps create blends with desired qualities, such as softness or durability.
                         </Text>
-                        <Pressable style={styles.seeBtn}>
+                        <Pressable style={styles.seeBtn} onPress={() => navigation.navigate("Shearing")}>
                             <Text style={styles.seeText}>Get Services</Text>
                             <Feather name="arrow-right-circle" size={24} color="white" />
                         </Pressable>

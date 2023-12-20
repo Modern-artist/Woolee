@@ -19,6 +19,9 @@ import Shearing from '../screens/Shearing';
 import Article from '../screens/Trends/Article';
 import Video from '../screens/Trends/Video';
 import Landing from '../screens/Home/Landing';
+import RawWool from '../screens/Home/RawWool';
+import ProcWool from '../screens/Home/ProcWool';
+import WoolProduct from '../screens/Home/WoolProduct';
 import { Feather, MaterialIcons, Octicons } from '@expo/vector-icons';
 import NewsTrends from '../screens/NewsTrends';
 import { useAuth } from '../context/AuthContext';
@@ -53,7 +56,6 @@ const StackNavigation = () => {
                         ),
                     }}
                 />
-                {isLoggedIn && user?.role !== "producer" && (
                 <Tab.Screen
                     name='Shop'
                     component={Shop}
@@ -73,7 +75,6 @@ const StackNavigation = () => {
                         ),
                     }}
                 />
-                )}
                 <Tab.Screen
                     name='Trends'
                     component={NewsTrends}
@@ -93,7 +94,7 @@ const StackNavigation = () => {
                         ),
                     }}
                 />
-
+                {isLoggedIn && (user?.role !== "collector" || user?.role !== "buyer") && (
                 <Tab.Screen
                     name='Services'
                     component={Services}
@@ -113,6 +114,8 @@ const StackNavigation = () => {
                         ),
                     }}
                 />
+                )}
+
                 <Tab.Screen
                     name='Profile'
                     component={Profile}
@@ -151,6 +154,9 @@ const StackNavigation = () => {
             <Stack.Screen name='Shearing' component={Shearing} options={{ headerShown: false }} />
             <Stack.Screen name='Video' component={Video} options={{ headerShown: false }} />
             <Stack.Screen name='Landing' component={Landing} options={{ headerShown: false }} />
+            <Stack.Screen name='RawWool' component={RawWool} options={{ headerShown: false }} />
+            <Stack.Screen name='ProcWool' component={ProcWool} options={{ headerShown: false }} />
+            <Stack.Screen name='WoolProduct' component={WoolProduct} options={{ headerShown: false }} />
         </Stack.Navigator>
         // </NavigationContainer>
     );
