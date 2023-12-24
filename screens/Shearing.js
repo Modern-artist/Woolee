@@ -38,11 +38,11 @@ const Shearing = () => {
             <View style={styles.authDetail}>
               <View style={styles.authDes}>
                 <AntDesign name="taobao-circle" size={24} color="black" />
-                <Text style={styles.authName}>{shearer?.shearing_company}s</Text>
+                <Text style={styles.authName}>{shearer?.shearing_company}</Text>
               </View>
-              <Text style={styles.postDate}>Experience : {shearer?.experience_years}+yrs</Text>x
+              <Text style={styles.postDate}>Experience : {shearer?.experience_years}+yrs</Text>
             </View>
-            
+
             {/* <Text style={styles.newsTitle}>{shearer?.user.first_name}</Text> */}
             <View style={styles.newsBioImg}>
               <Text style={styles.newsBio} numberOfLines={3} ellipsizeMode="tail">
@@ -121,9 +121,9 @@ const styles = StyleSheet.create({
   Heading: {
     fontSize: 24,
     fontWeight: '700',
-    padding:20,
-    borderColor:'#e7e7e7',
-    borderBottomWidth:2,
+    padding: 20,
+    borderColor: '#e7e7e7',
+    borderBottomWidth: 2,
   },
   postDate: {
     color: "#AAAAAA"
